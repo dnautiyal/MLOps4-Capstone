@@ -11,7 +11,7 @@ label_folder = './VisDroneVideo/VisDrone2019-VID-YOLOv7/val/annotations'
 # VisDrone YOLOv7 images folder
 raw_images_folder = './VisDroneVideo/VisDrone2019-VID-YOLOv7/val/images' 
 
-save_images_folder = './save_image/'
+save_images_folder = './YOLOv7_Annotated_Images/'
 
 name_list_path = './name_list.txt'
 
@@ -81,6 +81,8 @@ def make_name_list(raw_images_folder, name_list_path):
 if __name__ == '__main__':  
 
     make_name_list(raw_images_folder, name_list_path)
+    if not os.path.exists(save_images_folder):
+        os.makedirs(save_images_folder)
 
     classes = image_names = open(classes_path).read().strip().split()
     random.seed(42)
