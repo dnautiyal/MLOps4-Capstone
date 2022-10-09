@@ -4,20 +4,6 @@ import os
 import random
 import csv
 
-
-# VisDrone YOLOv7 annotations folder
-label_folder = './VisDroneVideo/VisDrone2019-VID-YOLOv7/val/annotations'
-
-# VisDrone YOLOv7 images folder
-raw_images_folder = './VisDroneVideo/VisDrone2019-VID-YOLOv7/val/images' 
-
-save_images_folder = './YOLOv7_Annotated_Images/'
-
-name_list_path = './name_list.txt'
-
-classes_path = './visdrone_classes.txt'
-
-
 def plot_one_box(x, image, color=None, label=None, line_thickness=None):
     # Plots one bounding box on image img
     tl = line_thickness or round(0.002 * (image.shape[0] + image.shape[1]) / 2) + 1  # line/font thickness
@@ -32,7 +18,7 @@ def plot_one_box(x, image, color=None, label=None, line_thickness=None):
         cv2.putText(image, label, (c1[0], c1[1] - 2), 0, tl / 3, [225, 255, 255], thickness=tf, lineType=cv2.LINE_AA)
 
 
-def draw_box_on_image(image_name, classes, colors, label_folder, raw_images_folder, save_images_folder ):
+def draw_yolo_annotation_box_on_image(image_name, classes, colors, label_folder, raw_images_folder, save_images_folder ):
     txt_path  = os.path.join(label_folder,'%s.txt'%(image_name)) 
     print(image_name)
     if image_name == '.DS_Store':
@@ -79,6 +65,18 @@ def make_name_list(raw_images_folder, name_list_path):
 
 
 if __name__ == '__main__':  
+    
+    # VisDrone YOLOv7 annotations folder
+    label_folder = './VisDroneVideo/VisDrone2019-VID-YOLOv7/val/annotations'
+
+    # VisDrone YOLOv7 images folder
+    raw_images_folder = './VisDroneVideo/VisDrone2019-VID-YOLOv7/val/images' 
+
+    save_images_folder = './YOLOv7_Annotated_Images/'
+
+    name_list_path = './name_list.txt'
+
+    classes_path = './visdrone_classes.txt'
 
     make_name_list(raw_images_folder, name_list_path)
     if not os.path.exists(save_images_folder):
@@ -92,7 +90,7 @@ if __name__ == '__main__':
     box_total = 0
     image_total = 0
     for image_name in image_names:
-        box_num = draw_box_on_image(image_name, classes, colors, label_folder, raw_images_folder, save_images_folder) 
+        box_num = draw_yolo_annotation_box_on_image(image_name, classes, colors, label_folder, raw_images_folder, save_images_folder) 
         box_total += box_num
         image_total += 1
         print('Box number:', box_total, 'Image number:',image_total)
