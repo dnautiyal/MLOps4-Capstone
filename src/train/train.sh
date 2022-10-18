@@ -4,7 +4,7 @@
 eval "$(conda shell.bash hook)"
 conda activate pytorch
 source ./src/train/train_config.sh
-# cd ./yolov7
+cd ./yolov7
 # num_freeze_layers=118
 # num_epochs=1
 # dataset_name="VisDroneData-2019"
