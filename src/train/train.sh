@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # https://thelinuxcluster.com/2020/05/21/cant-execute-conda-activate-from-bash-script/
 # source ~/conda/etc/profile.d/conda.sh
 eval "$(conda shell.bash hook)"
