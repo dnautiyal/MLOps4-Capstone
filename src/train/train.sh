@@ -3,8 +3,8 @@
 # source ~/conda/etc/profile.d/conda.sh
 eval "$(conda shell.bash hook)"
 conda activate pytorch
+source ./src/train/train.config
 cd ./yolov7
-source src/train/train.config
 # num_freeze_layers=118
 # batch_size=16
 # num_epochs=10
