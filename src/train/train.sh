@@ -3,7 +3,7 @@
 # source ~/anaconda3/etc/profile.d/conda.sh
 ls -aconda activate pytorch
 cd ./yolov7
-source train.config
+source ./src/train/train.config
 # num_freeze_layers=118
 # batch_size=16
 # num_epochs=10
