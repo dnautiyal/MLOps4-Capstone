@@ -1,7 +1,7 @@
 #!/bin/bash
 # https://thelinuxcluster.com/2020/05/21/cant-execute-conda-activate-from-bash-script/
 # source ~/anaconda3/etc/profile.d/conda.sh
-ls -aconda activate pytorch
+conda activate pytorch
 cd ./yolov7
 source ./src/train/train.config
 # num_freeze_layers=118
