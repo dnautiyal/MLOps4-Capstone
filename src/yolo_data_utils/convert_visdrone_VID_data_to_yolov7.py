@@ -84,21 +84,17 @@ def _visdrone_video_to_yolov7_annotation_files(data_folder_dir, yolov7_output_fo
     annotation_dict = {}
     for annotation_filename in annotation_filepath_list:
       image_size = image_size_dict[annotation_filename]
-      print("image size for (h,w,c) " + annotation_filename + " ==> " + str(image_size))
+      # print("image size for (h,w,c) " + annotation_filename + " ==> " + str(image_size))
       with open(Path(input_ann_folder)/annotation_filename) as file_obj:
         reader_obj = csv.reader(file_obj)
-        i = 0
         for row in reader_obj:          
           yolov7_annotation_file_name = os.path.splitext(annotation_filename)[0] + "_" + str(row[0]).zfill(7) + ".txt"
           resized_row  =  _adjust_visidrone_video_row_for_image_resize(image_size, new_image_size, row) 
           yolov7_row = _convert_visidrone_video_row_to_yolov7_row(new_image_size, resized_row)
-          # if i == 0:
-            # print(annotation_filename + "==>" + str(row))          
-            # print(yolov7_annotation_file_name + "==>" + str(yolov7_row))
           if yolov7_annotation_file_name not in annotation_dict:
             annotation_dict[yolov7_annotation_file_name] = []
           annotation_dict[yolov7_annotation_file_name].append(yolov7_row)
-          i += 1
+
     for k, v in annotation_dict.items():
       with open(str(Path(output_annotations_folder)/k), "w", newline="") as f:
         for row in v:
