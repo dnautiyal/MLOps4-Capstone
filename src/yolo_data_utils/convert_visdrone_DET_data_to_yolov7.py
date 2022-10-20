@@ -92,7 +92,9 @@ def _visdrone_DET_to_yolov7_files(data_folder_dir, yolov7_output_folder_dir, new
       print("image_size ==> " + str(im_size))
 
 
-def create_visdrone_DET_data_in_yolov7_format(new_image_size = (960,540)):
+def create_visdrone_DET_data_in_yolov7_format(new_image_size = (960,544)):
+    # the default image size is (960x544) as it has an aspect ratio close to 16:9, and also as both width and height 
+    # are multiples of 32 as needed by the convolution layers of YOLOv7
   
   _visdrone_DET_to_yolov7_files('./VisDrone/VisDrone2019-DET-train', './VisDrone/VisDrone2019-DET-YOLOv7/train', new_image_size)
   _visdrone_DET_to_yolov7_files('./VisDrone/VisDrone2019-DET-val', './VisDrone/VisDrone2019-DET-YOLOv7/val', new_image_size)
