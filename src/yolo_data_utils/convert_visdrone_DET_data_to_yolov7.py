@@ -109,11 +109,15 @@ def create_visdrone_DET_data_in_yolov7_format(new_image_size = (960,540)):
   except FileNotFoundError:
       print("The 'docs' directory does not exist")
 
+def image_size_type(strings):
+    strings = strings.replace("(", "").replace(")", "")
+    mapped_int = map(int, strings.split(","))
+    return tuple(mapped_int)
 
 
 if __name__ == '__main__':      
     parser = argparse.ArgumentParser(description='Create a ArcHydro schema')
-    parser.add_argument('--output_image_size', nargs='+', type=int, metavar='path', required=True, help='the size of the image:(px width x px height)')
+    parser.add_argument('--output_image_size', type=image_size_type, metavar='path', required=True, help='the size of the image:(px width x px height)')
     args = parser.parse_args()
     image_size = tuple(args.output_image_size)
     create_visdrone_DET_data_in_yolov7_format(new_image_size = image_size)
