@@ -3,6 +3,7 @@ from pathlib import Path
 import shutil
 import cv2
 import csv
+
 class VisDroneVideoToYoloConverter:
     def _visdrone_video_to_yolov7_image_files(self, data_folder_dir, yolov7_output_folder_dir):
         """
