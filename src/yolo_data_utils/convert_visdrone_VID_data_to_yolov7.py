@@ -117,7 +117,7 @@ def _convert_visdrone_data_to_yolov7_format(data_folder_dir, yolov7_output_folde
   print(image_size_dictionary)
   _visdrone_video_to_yolov7_annotation_files(data_folder_dir, yolov7_output_folder_dir, _new_image_size, image_size_dictionary)
 
-def create_visdrone_video_data_in_yolov7_format(new_image_size = (960, 544))
+def create_visdrone_video_data_in_yolov7_format(new_image_size = (960, 544)):
     # the default image size is (960x544) as it has an aspect ratio close to 16:9, and also as both width and height 
     # are multiples of 32 as needed by the convolution layers of YOLOv7:
   
