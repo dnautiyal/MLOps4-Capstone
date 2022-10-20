@@ -94,12 +94,12 @@ def _visdrone_DET_to_yolov7_files(data_folder_dir, yolov7_output_folder_dir, new
 
 def create_visdrone_DET_data_in_yolov7_format(new_image_size = (960,540)):
   
-  _visdrone_DET_to_yolov7_files('/content/VisDrone/VisDrone2019-DET-train', '/content/VisDrone/VisDrone2019-DET-YOLOv7/train', new_image_size)
-  _visdrone_DET_to_yolov7_files('/content/VisDrone/VisDrone2019-DET-val', '/content/VisDrone/VisDrone2019-DET-YOLOv7/val', new_image_size)
-  _visdrone_DET_to_yolov7_files('/content/VisDrone/VisDrone2019-DET-test-dev', '/content/VisDrone/VisDrone2019-DET-YOLOv7/test-dev', new_image_size)
+  _visdrone_DET_to_yolov7_files('./VisDrone/VisDrone2019-DET-train', './VisDrone/VisDrone2019-DET-YOLOv7/train', new_image_size)
+  _visdrone_DET_to_yolov7_files('./VisDrone/VisDrone2019-DET-val', './VisDrone/VisDrone2019-DET-YOLOv7/val', new_image_size)
+  _visdrone_DET_to_yolov7_files('./VisDrone/VisDrone2019-DET-test-dev', './VisDrone/VisDrone2019-DET-YOLOv7/test-dev', new_image_size)
   ## Create data.yaml file
   try:
-      with open('/content/VisDrone/VisDrone2019-DET-YOLOv7/data.yaml', 'w') as f:
+      with open('./VisDrone/VisDrone2019-DET-YOLOv7/data.yaml', 'w') as f:
           f.write('train: ../VisDrone/VisDrone2019-DET-YOLOv7/train/images\n')
           f.writelines('val: ../VisDrone/VisDrone2019-DET-YOLOv7/val/images\n')
           f.writelines('dev: ../VisDrone/VisDrone2019-DET-YOLOv7/test-dev/images\n')
