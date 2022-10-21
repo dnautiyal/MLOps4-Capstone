@@ -5,7 +5,7 @@ eval "$(conda shell.bash hook)"
 conda activate pytorch
 # source ./src/train/train_config.sh
 cd ./yolov7
-num_freeze_layers=118
+num_freeze_layers=114
 num_epochs=5
 dataset_name="VisDrone2019-DET-YOLOv7"
 batch_size=16
