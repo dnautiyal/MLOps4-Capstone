@@ -17,6 +17,6 @@ if [-f $weights_filename]
 then
     echo "$weights_filename file already exists"
 else
-    wget https://github.com/WongKinYiu/yolov7/releases/download/v0.1/$weight_filename    
+    wget https://github.com/WongKinYiu/yolov7/releases/download/v0.1/$weights_filename    
 fi
 python3 train.py --adam --img-size 960 960 --freeze $num_freeze_layers --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename
