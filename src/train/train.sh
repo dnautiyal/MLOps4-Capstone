@@ -7,7 +7,6 @@ conda activate pytorch
 cd ./yolov7
 num_freeze_layers=118
 num_epochs=1
-dataset_name="VisDroneData-2019"
 dataset_name="VisDrone2019-DET-YOLOv7"
 batch_size=16
 weights_filename="yolov7x_training.pt"
@@ -20,4 +19,4 @@ then
 else
     echo "$weights_filename file already exists"
 fi
-python3 train.py --freeze $num_freeze_layers --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename
+python3 train.py --rect --imgsz 960 --freeze $num_freeze_layers --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename
