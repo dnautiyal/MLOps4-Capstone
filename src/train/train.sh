@@ -19,4 +19,4 @@ then
 else
     echo "$weights_filename file already exists"
 fi
-python3 train.py --rect --imgsz 960 --freeze $num_freeze_layers --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename
+python3 train.py --rect --img-size 960 --freeze $num_freeze_layers --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename
