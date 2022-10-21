@@ -63,28 +63,31 @@ def _visdrone_DET_to_yolov7_files(data_folder_dir, yolov7_output_folder_dir, new
       # if i > 10:
         # break
       yolov7_rows = []
-      with open(Path(input_ann_folder)/annotation_filename) as file_obj:
-        image_path = os.path.splitext(str(Path(data_folder_dir) / "images"/annotation_filename))[0]+".jpg"
+      input_image_path = os.path.splitext(str(Path(input_images_folder)/annotation_filename))[0]+".jpg"
+      input_annotation_file =  Path(input_ann_folder)/annotation_filename
+      output_image_path = os.path.splitext(str(Path(output_images_folder)/annotation_filename))[0]+".jpg"
+      output_annotation_file = str(Path(output_annotations_folder)/annotation_filename)
+      with open(input_annotation_file) as file_obj:
         # print(image_path)
-        img = cv2.imread(image_path)
+        img = cv2.imread(input_image_path)
         original_image_size = img.shape
         unique_image_sizes.add(original_image_size)
         # print("image size for (h,w,c) " + annotation_filename + " ==> " + str(image_size))
         resized_image = cv2.resize(img, new_image_size)
-        resized_image_path = os.path.splitext(str(Path(output_images_folder)/annotation_filename))[0]+".jpg"
+        
         # print("writing image to: " + resized_image_path)
         try:
-          cv2.imwrite(resized_image_path, resized_image)
+          cv2.imwrite(output_image_path, resized_image)
         except:
-          print("cannot write to: " + resized_image_path)
+          print("cannot write to: " + output_image_path)
         reader_obj = csv.reader(file_obj)        
         for row in reader_obj:          
-          yolov7_annotation_file_name = os.path.splitext(annotation_filename)[0] + "_" + str(row[0]).zfill(7) + ".txt"
+          # yolov7_annotation_file_name = os.path.splitext(annotation_filename)[0] + "_" + str(row[0]).zfill(7) + ".txt"
           resized_row  =  _adjust_visidrone_DET_row_for_image_resize(original_image_size, new_image_size, row)
           # print("resized_row ==> " + str(resized_row))
           yolov7_row = _convert_visidrone_DET_row_to_yolov7_row(new_image_size, resized_row)
           yolov7_rows.append(yolov7_row)
-      with open(str(Path(output_annotations_folder)/annotation_filename), "w", newline="") as f:
+      with open(output_annotation_file, "w", newline="") as f:
         for row in yolov7_rows:
           f.write(' '.join(str(item) for item in row)+'\n')      
       i = i + 1
