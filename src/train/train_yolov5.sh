@@ -6,7 +6,7 @@ conda activate pytorch
 # source ./src/train/train_config.sh
 cd ./yolov5
 num_freeze_layers=118
-num_epochs=5
+num_epochs=50
 dataset_name="VisDrone2019-DET-YOLOv7"
 batch_size=16
 weights_filename="yolov5s.pt"
