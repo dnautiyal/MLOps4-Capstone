@@ -19,4 +19,4 @@ then
 else
     wget https://github.com/ultralytics/yolov5/releases/download/v6.2/$weights_filename
 fi
-python3 train.py --img-size 960 --rect --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./model/$cfg_filename
+python3 train.py --img-size 960 --rect --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./models/$cfg_filename
