@@ -5,7 +5,8 @@ eval "$(conda shell.bash hook)"
 conda activate pytorch
 # source ./src/train/train_config.sh
 cd ./yolov7
-num_freeze_layers=118
+# num_freeze_layers=118
+num_freeze_layers=59
 num_epochs=100
 dataset_name="VisDrone2019-DET-YOLOv7"
 batch_size=8
@@ -20,4 +21,4 @@ then
 else
     echo "$weights_filename file already exists"
 fi
-python3 train.py --adam --img-size 960 960 --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename --hyp ../src/train/$hyp_filename
+python3 train.py --adam --img-size 960 960 --batch $batch_size --freeze $num_freeze_layers --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename --hyp ../src/train/$hyp_filename
