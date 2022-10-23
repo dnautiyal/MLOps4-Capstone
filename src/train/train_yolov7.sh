@@ -8,7 +8,7 @@ cd ./yolov7
 num_freeze_layers=118
 num_epochs=5
 dataset_name="VisDrone2019-DET-YOLOv7"
-batch_size=16
+batch_size=12
 weights_filename="yolov7x_training.pt"
 cfg_filename="yolov7x.yaml"
 hyp_filename="yolov7_aerial_detection_hyp.yaml"
