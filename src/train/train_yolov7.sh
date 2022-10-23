@@ -7,7 +7,7 @@ conda activate pytorch
 cd ./yolov7
 # num_freeze_layers=118 # corresponds to yolov7x
 # num_freeze_layers=59 # corresponds to yolov7x
-num_epochs=5
+num_epochs=20
 dataset_name="VisDrone2019-Combined-YOLOv7"
 batch_size=8
 # weights_filename="yolov7x_training.pt"
