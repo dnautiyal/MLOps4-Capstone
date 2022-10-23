@@ -9,8 +9,8 @@ num_freeze_layers=118
 num_epochs=50
 dataset_name="VisDrone2019-DET-YOLOv7"
 batch_size=16
-weights_filename="yolov5s.pt"
-cfg_filename="yolov5x.yaml"
+weights_filename="yolov5x.pt"
+cfg_filename="yolov5s.yaml"
 # python3 train.py --freeze 74 --batch 16 --epochs 5 --data ../VisDrone/VisDroneData-2019/data.yaml --weights 'yolov7-tiny.pt' --device 0 --cfg ./cfg/training/yolov7-tiny.yaml
 # python3 train.py --freeze 102 --batch 16 --epochs 5 --data ../VisDrone/VisDroneData-2019/data.yaml --weights 'yolov7_training.pt' --device 0 --cfg ./cfg/training/yolov7.yaml
 if [-f $weights_filename]
