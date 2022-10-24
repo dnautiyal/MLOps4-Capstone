@@ -13,9 +13,10 @@ def _convert_visidrone_DET_row_to_yolov7_row(size, box):
     y = int(box[1]) + int(box[3])/2.0
     w = int(box[2])
     h = int(box[3])
+    c = int(box[5])-1
     # if x > size[1] or y > size[0]:
       # print(str((x,y,w,h)) + " ==> " + str(size))
-    return (box[5], x*dw,y*dh,w*dw,h*dh)
+    return (c, x*dw,y*dh,w*dw,h*dh)
 
   
 def _adjust_visidrone_DET_row_for_image_resize(originalImageSize, newImageSize, box):
@@ -83,6 +84,8 @@ def _visdrone_DET_to_yolov7_files(data_folder_dir, yolov7_output_folder_dir, new
         reader_obj = csv.reader(file_obj)        
         for row in reader_obj:          
           # yolov7_annotation_file_name = os.path.splitext(annotation_filename)[0] + "_" + str(row[0]).zfill(7) + ".txt"
+          if row[4] == '0' or row[5] == '11':#'VisDrone' 'ignored regions' class 0 or 'other' class 11
+            continue
           resized_row  =  _adjust_visidrone_DET_row_for_image_resize(original_image_size, new_image_size, row)
           # print("resized_row ==> " + str(resized_row))
           yolov7_row = _convert_visidrone_DET_row_to_yolov7_row(new_image_size, resized_row)
@@ -110,7 +113,7 @@ def create_visdrone_DET_data_in_yolov7_format(new_image_size = (960,544)):
           f.writelines('dev: ../VisDrone/VisDrone2019-DET-YOLOv7/test-dev/images\n')
           f.writelines('\n')
           f.writelines('nc: 12\n')
-          f.writelines("names: ['ignore', 'pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor', 'others']\n")
+          f.writelines("names: ['pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor']\n")
   except FileNotFoundError:
       print("The 'docs' directory does not exist")
 

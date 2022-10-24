@@ -45,8 +45,9 @@ def _convert_visidrone_video_row_to_yolov7_row(size, box):
     x = int(box[2]) + int(box[4])/2.0
     y = int(box[3]) + int(box[5])/2.0
     w = int(box[4])
-    h = int(box[5])    
-    return (box[7], x*dw,y*dh,w*dw,h*dh)
+    h = int(box[5])
+    c = int(box[7])-1    
+    return (c, x*dw,y*dh,w*dw,h*dh)
 
   
 def _adjust_visidrone_video_row_for_image_resize(originalImageSize, newImageSize, box):
@@ -87,7 +88,9 @@ def _visdrone_video_to_yolov7_annotation_files(data_folder_dir, yolov7_output_fo
       # print("image size for (h,w,c) " + annotation_filename + " ==> " + str(image_size))
       with open(Path(input_ann_folder)/annotation_filename) as file_obj:
         reader_obj = csv.reader(file_obj)
-        for row in reader_obj:          
+        for row in reader_obj:
+          if row[6] == '0' or row[7] == '11':#'VisDrone' 'ignored regions' class 0 or 'other' class 11
+            continue          
           yolov7_annotation_file_name = os.path.splitext(annotation_filename)[0] + "_" + str(row[0]).zfill(7) + ".txt"
           resized_row  =  _adjust_visidrone_video_row_for_image_resize(image_size, new_image_size, row) 
           yolov7_row = _convert_visidrone_video_row_to_yolov7_row(new_image_size, resized_row)
@@ -123,12 +126,12 @@ def create_visdrone_video_data_in_yolov7_format(new_image_size = (960, 544)):
     #Create data.yaml file
     try:
         with open('./VisDroneVideo/VisDrone2019-VID-YOLOv7/data.yaml', 'w') as f:
-            f.write('train: ../VisDroneVideo/VisDrone2019-VID-YOLOv7/train/images\n')
-            f.writelines('val: ../VisDroneVideo/VisDrone2019-VID-YOLOv7/val/images\n')
-            f.writelines('dev: ../VisDroneVideo/VisDrone2019-VID-YOLOv7/test-dev/images\n')
+            f.write('train: ../VisDrone/VisDrone2019-VID-YOLOv7/train/images\n')
+            f.writelines('val: ../VisDrone/VisDrone2019-VID-YOLOv7/val/images\n')
+            f.writelines('dev: ../VisDrone/VisDrone2019-VID-YOLOv7/test-dev/images\n')
             f.writelines('\n')
             f.writelines('nc: 12\n')
-            f.writelines("names: ['ignore', 'pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor', 'others']\n")
+            f.writelines("names: ['pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor']\n")
     except FileNotFoundError:
         print("The 'docs' directory does not exist")
 
