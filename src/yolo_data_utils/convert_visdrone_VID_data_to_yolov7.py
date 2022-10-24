@@ -120,9 +120,9 @@ def create_visdrone_video_data_in_yolov7_format(new_image_size = (960, 544)):
     # the default image size is (960x544) as it has an aspect ratio close to 16:9, and also as both width and height 
     # are multiples of 32 as needed by the convolution layers of YOLOv7:
   
-    _convert_visdrone_data_to_yolov7_format('./VisDrone/VisDrone2019-VID-train', './VisDroneVideo/VisDrone2019-VID-YOLOv7/train', new_image_size)
-    _convert_visdrone_data_to_yolov7_format('./VisDrone/VisDrone2019-VID-val', './VisDroneVideo/VisDrone2019-VID-YOLOv7/val', new_image_size)
-    _convert_visdrone_data_to_yolov7_format('./VisDrone/VisDrone2019-VID-test-dev', './VisDroneVideo/VisDrone2019-VID-YOLOv7/test-dev', new_image_size)
+    _convert_visdrone_data_to_yolov7_format('./VisDrone/VisDrone2019-VID-train', './VisDrone/VisDrone2019-VID-YOLOv7/train', new_image_size)
+    _convert_visdrone_data_to_yolov7_format('./VisDrone/VisDrone2019-VID-val', './VisDrone/VisDrone2019-VID-YOLOv7/val', new_image_size)
+    _convert_visdrone_data_to_yolov7_format('./VisDrone/VisDrone2019-VID-test-dev', './VisDrone/VisDrone2019-VID-YOLOv7/test-dev', new_image_size)
     #Create data.yaml file
     try:
         with open('./VisDrone/VisDrone2019-VID-YOLOv7/data.yaml', 'w') as f:
