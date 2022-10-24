@@ -130,7 +130,7 @@ def create_visdrone_video_data_in_yolov7_format(new_image_size = (960, 544)):
             f.writelines('val: ../VisDrone/VisDrone2019-VID-YOLOv7/val/images\n')
             f.writelines('dev: ../VisDrone/VisDrone2019-VID-YOLOv7/test-dev/images\n')
             f.writelines('\n')
-            f.writelines('nc: 12\n')
+            f.writelines('nc: 10\n')
             f.writelines("names: ['pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor']\n")
     except FileNotFoundError:
         print("The 'docs' directory does not exist")
