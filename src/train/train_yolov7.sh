@@ -25,4 +25,4 @@ then
 else
     echo "$weights_filename file already exists"
 fi
-python3 train.py --adam --img-size 960 960 --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename --hyp ../src/train/$hyp_filename
+python3 train.py --adam --img-size 960 960 --batch $batch_size --epochs $num_epochs --data ../VisDrone/$dataset_name/data.yaml --weights $weights_filename --device 0 --cfg ./cfg/training/$cfg_filename --hyp ../src/train/$hyp_filename --upload_data val

@@ -7,7 +7,7 @@
     - AWS configure
     - conda activate pytorch
     - configure git if needed
-
+    - initialize wandb
 
 </details>
 <details>
