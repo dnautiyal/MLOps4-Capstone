@@ -55,6 +55,7 @@
         - cd to MLOps4-Capstone
         - git clone https://github.com/WongKinYiu/yolov7.git
         - git clone https://github.com/ultralytics/yolov5.git
+        - install requirements.txt libraries for yolov7 and yolov5 
         - bash ./src/train/train_yolov7.sh
 
 
